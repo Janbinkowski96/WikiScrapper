@@ -2,3 +2,11 @@ beautifulsoup4==4.9.3
 click==7.1.2
 nltk==3.5
 pymongo==3.11.2
+pandas==1.2.0
+clean-text==0.3.0
+Unidecode==1.1.2
+openpyxl==3.0.6
+
+# Additional requirement
+#  import nltk
+#  nltk.download('wordnet')
