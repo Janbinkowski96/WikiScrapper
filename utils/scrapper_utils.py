@@ -4,10 +4,10 @@ from typing import Tuple
 from urllib.request import Request, urlopen
 
 from bs4 import BeautifulSoup
+from cleantext import clean
 
 
 def get_data(base_url: str, word: str) -> Tuple[str, str, str]:
-
     url = f"{base_url}{word}"
     req = Request(url)
 
@@ -22,6 +22,12 @@ def extract_text(html_page: str) -> str:
     soup = BeautifulSoup(html_page, "html.parser")
     text = ''
     for paragraph in soup.find_all('p'):
-        text += paragraph.text.replace("\n", "")
+        paragraph = paragraph.text
+        text += clean(paragraph, )
 
     return text
+
+
+def print_record(data: dict) -> None:
+    echo = f"Phrase {data.get('key-phrase')}: '{data.get('content')[:20]}' from {data.get('from')}, {data.get('date')}"
+    print(echo)

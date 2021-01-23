@@ -1,10 +1,11 @@
-from utils.scrapper_utils import get_data
+import concurrent.futures
+from contextlib import suppress
+
 from nltk.corpus import wordnet as wn
 
-
-import concurrent.futures
-from source.data_types.scrapped_data import DataCollection
-from contextlib import suppress
+from source.data_types.scraped_data import DataCollection
+from utils.scrapper_utils import get_data
+from utils.scrapper_utils import print_record
 
 
 class Scrapper:
@@ -33,8 +34,10 @@ class Scrapper:
 
             for future in concurrent.futures.as_completed(futures):
                 with suppress(TypeError):
+
                     future = future.result()
                     text, word, url = future[0], future[1], future[2]
                     prepared_data = DataCollection(parsed_data=text, phrase=word, source=url)
 
+                    print_record(prepared_data.get_description)
                     self.scrapped.append(prepared_data)
