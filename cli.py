@@ -2,6 +2,7 @@ import click
 import time
 from source.scrapper import Scrapper
 from datetime import timedelta
+from source.client import Client
 
 
 @click.group(invoke_without_command=True)
@@ -22,6 +23,10 @@ def run(phrase: str) -> None:
     scrapper.scrap_raw_data()
     end_time = time.monotonic()
     print(timedelta(seconds=end_time - start_time))
+
+    mongo_client = Client()
+    mongo_client.set_db()
+    mongo_client.insert({"XXX": "YYY"}, "TEST")
 
 
 if __name__ == '__main__':
