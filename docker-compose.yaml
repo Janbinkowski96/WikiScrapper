@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: wiki_scraper_db
+    volumes:
+      - ./DB/mongo:/data/db
+    ports:
+      - "27017-27019:27017-27019"
