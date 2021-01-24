@@ -10,3 +10,5 @@ def create_path(directory: str) -> str:
     if os.path.exists(directory):
         df_path = os.path.join(directory, "db.xlsx")
         return df_path
+    else:
+        raise Exception("Director does not exists.")

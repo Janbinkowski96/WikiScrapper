@@ -51,7 +51,6 @@ class Client:
         else:
             self.db[collection_name].drop()
 
-
     @staticmethod
     def convert_to_df(docs: dict) -> pd.DataFrame:
 
